@@ -2,6 +2,39 @@ body {
     margin: 0;
 }
 
+/* FONTS */
+
+p {
+    font-family: "Inter", sans-serif;
+    font-weight: 250;
+    text-align: justify;
+}
+
+h1 {
+    font-family: "Cormorant Garamond";
+    font-size: 48px;
+    font-weight: 300;
+}
+
+h2 {
+    font-family: "Cormorant Garamond";
+    font-size: 38px;
+    font-weight: 400;
+
+}
+
+h3 {
+    font-family: "Cormorant Garamond";
+    font-size: 32px;
+    font-weight: 400;
+}
+
+h4 {
+    font-family: "Cormorant Garamond";
+    font-size: 24px;
+    font-weight: 400;
+}
+
 /* HERO */
 
 .hero {
@@ -15,14 +48,16 @@ body {
 }
 
 .hero h1 {
-    background-color: #d9d9d9;
+    background-color: gainsboro;
     color: #000;
     padding: 20px 40px;
     margin: 40px;
 }
 
 /* FILOSOFIA */
-
+.about-title{
+    text-align: center;
+}
 .about {
     padding: 60px 20px;
 }
@@ -63,4 +98,53 @@ body {
 .about-text p {
     line-height: 1.7;
     text-align: justify;
+}
+
+
+.experience-title {
+    text-align: center;
+    font-size: large;
+}
+
+.experience-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.experience-card {
+    text-align: center;
+}
+
+.experience-card h4 {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.experience-card p {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+
+/*DEPOIMENTOS*/
+
+.depo-image {
+    width: 250px;
+}
+
+.depo-image img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    
+}
+
+
+.depo-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }

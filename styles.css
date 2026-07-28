@@ -144,7 +144,44 @@ h4 {
 
 
 .depo-cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: center;
     gap: 30px;
+}
+
+.depo-cards-title {
+    text-align: center;
+}
+
+/*FAQ*/
+
+.FAQ-card h4{
+    margin-bottom: 8px;
+}
+
+.FAQ-card p {
+    margin: 0;
+    padding: 0;
+}
+
+.FAQ-cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.FAQ-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.FAQ-title {
+    text-align: center;
 }

@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+}
+
+/* HERO */
+
+.hero {
+    background-image: url("img/hero_img.jpg");
+    background-size: cover;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1 {
+    background-color: #d9d9d9;
+    color: #000;
+    padding: 20px 40px;
+    margin: 40px;
+}
+
+/* FILOSOFIA */
+
+.about {
+    padding: 60px 20px;
+}
+
+.about p {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* QUEM SOMOS */
+
+.about-us {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.about-us img {
+    height: 500px;
+}
+
+.about-text {
+    max-width: 550px;
+}
+
+.about-text h2 {
+    margin-top: 0;
+}
+
+.about-text p {
+    line-height: 1.7;
+    text-align: justify;
+}

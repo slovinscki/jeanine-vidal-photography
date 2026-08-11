@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeanine Vidal Photography</title>
+    <title>Fotografia de Casamentos | Jeanine Vidal Photography</title>
+    <meta name="description" content="Fotografia de casamentos com sensibilidade, autenticidade e emoção. Conheça o trabalho de Jeanine Vidal e Rafael e conte-nos a história de vocês.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jeanine-vidal-photography-sooty.vercel.app/">
 
-    <!-- icones -->
-     <link rel="stylesheet" 
-     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" 
-     integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" 
-     crossorigin="anonymous" 
-     referrerpolicy="no-referrer" />
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fotografia de Casamentos | Jeanine Vidal Photography">
+    <meta property="og:description" content="Histórias de casamento registradas com sensibilidade, autenticidade e emoção.">
+    <meta property="og:url" content="https://jeanine-vidal-photography-sooty.vercel.app/">
+    <meta property="og:image" content="https://jeanine-vidal-photography-sooty.vercel.app/img-webp/hero-calm.webp">
+    <meta property="og:image:alt" content="Fotografia de casamento por Jeanine Vidal Photography">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fotografia de Casamentos | Jeanine Vidal Photography">
+    <meta name="twitter:description" content="Histórias de casamento registradas com sensibilidade, autenticidade e emoção.">
+    <meta name="twitter:image" content="https://jeanine-vidal-photography-sooty.vercel.app/img-webp/hero-calm.webp">
+    <link rel="preload" as="image" href="img-webp/hero-calm.webp" type="image/webp" fetchpriority="high">
     
      <!-- Google Fonts -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="styles.css">
@@ -25,44 +35,42 @@
     <!--NAVBAR-->
 <body>
 
-    <div class="container">
-
         <header class="navbar-container">
 
-            <nav>
+            <nav aria-label="Navegação principal">
 
-                <a href="#">
+                <a href="#home" aria-label="Jeanine Vidal Photography - Início">
                     <img
-                        src="img/logo-jeanine-vidal.png"
+                        src="img-webp/logo-jeanine-vidal.webp"
                         alt="Logo Jeanine Vidal Photography"
                         class="logo"
                     >
                 </a>
 
                 <ul class="navbar-items">
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">SOBRE</a></li>
-                    <li><a href="#">BLOG</a></li>
-                    <li><a href="#">CONTATO</a></li>
-                    <li><a href="#" class="client-btn">ÁREA DO CLIENTE</a></li>
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#sobre">SOBRE</a></li>
+                    <li><a href="#contato">CONTATO</a></li>
                 </ul>
 
             </nav>
 
         </header>
 
+        <main>
+
         <!-- HERO -->
 
-        <div class="hero">
+        <section class="hero" id="home" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1>Fotografia para quem quer lembrar do que realmente importa</h1>
+                <h1 id="hero-title">Fotografia para quem quer lembrar do que realmente importa</h1>
             </div>
-        </div>
+        </section>
 
         <!-- Filosofia do trabalho -->
 
-        <div class="about">
-            <h2 class="about-title">Casamentos são para sempre</h2>
+        <section class="about" aria-labelledby="filosofia-title">
+            <h2 class="about-title" id="filosofia-title">Casamentos são para sempre</h2>
 
             <p>
                 Acreditamos que as memórias mais valiosas vivem nos pequenos detalhes.
@@ -70,155 +78,391 @@
                 história aconteça naturalmente. O resultado são imagens autênticas,
                 capazes de fazer reviver emoções mesmo muitos anos depois.
             </p>
-        </div>
-
-        <!-- O restante do site continua aqui -->
-
-    </div>
+        </section>
     <!-- Sobre nós -->
-    <div class="about-us">
-        <img src="img/jeanine_rafael.jpg" alt="Jeanine e Rafael">
+    <section class="about-us" id="sobre" aria-labelledby="sobre-title">
+        <img src="img-webp/jeanine_rafael.webp" alt="Jeanine e Rafael">
 
         <div class="about-text">
-            <h2>Quem somos</h2>
+            <h2 id="sobre-title">Quem somos</h2>
 
             <p>
-                Somos Jeanine e Rafael, apaixonados por viagens, arte, gastronomia e,
-                acima de tudo, por contar histórias através da fotografia.
-
-                Fotografamos juntos desde 2015 e compartilhamos a vida muito antes disso.
-                Em 2018, decidimos viver uma grande aventura: moramos na Irlanda e na Itália,
-                onde tivemos a oportunidade de conhecer diferentes culturas e ampliar nosso
-                olhar sobre o mundo, sem nunca deixar a fotografia de lado.
-
-                Hoje, toda essa bagagem faz parte da forma como fotografamos. Acreditamos
-                que cada pessoa tem uma história única, e buscamos registrá-la com
-                sensibilidade, autenticidade e respeito ao que torna cada momento especial.
-
-                Esperamos que tenham gostado de conhecer um pouco da nossa história.
-                Agora, queremos conhecer a de vocês.
+                Somos Jeanine e Rafael, parceiros na vida e na fotografia. Desde 2015,
+                registramos histórias com sensibilidade, autenticidade e atenção aos
+                pequenos detalhes. Nossa experiência vivendo na Irlanda e na Itália ampliou
+                nosso olhar e tornou cada encontro ainda mais especial. Acreditamos que cada
+                casal tem uma história única — e queremos contar a de vocês com imagens que
+                façam reviver cada emoção.
             </p>
         </div>
-    </div>
+    </section>
+
+    <section class="story-section story-section--soft" aria-labelledby="cenarios-title">
+        <div class="story-section__inner">
+            <div class="story-section__copy">
+                <p class="section-kicker">Cenários com presença</p>
+                <h2 id="cenarios-title">O lugar também faz parte da memória</h2>
+                <p>
+                    Arquitetura, paisagem e luz ajudam a contar quem vocês são. Do silêncio
+                    de um castelo à beleza de um lago italiano, cada cenário ganha significado
+                    quando acolhe uma história verdadeira.
+                </p>
+            </div>
+            <div class="story-section__gallery">
+                <figure class="story-image story-image--feature">
+                    <img src="img-webp/portfolio-extra-01.webp" width="753" height="502" alt="Interior clássico preparado para uma celebração de casamento" loading="lazy" decoding="async">
+                </figure>
+                <figure class="story-image">
+                    <img src="img-webp/portfolio-extra-02.webp" width="1920" height="1280" alt="Casal diante de um lago em Malcesine" loading="lazy" decoding="async">
+                </figure>
+                <figure class="story-image">
+                    <img src="img-webp/portfolio-extra-07.webp" width="1080" height="720" alt="Casal contemplando Firenze ao entardecer" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </div>
+    </section>
 
 
     <!--experience-->
 
+<section class="experience-section" aria-labelledby="experiencia-title">
 <div class="experience-title">
-    <h2>Por que nos escolher?</h2>
+    <h2 id="experiencia-title">Por que nos escolher?</h2>
         
 </div>
 
 <div class="experience-cards">
    
     <div class="experience-card">
-        <h4>+11</h4>
+        <h3>+11</h3>
         <p>anos de experiência</p>
     </div>
 
     <div class="experience-card">
-        <h4>+250</h4>
+        <h3>+250</h3>
         <p>eventos no mundo todo</p>
     </div>
 
     <div class="experience-card">
-        <h4>+22</h4>
+        <h3>+22</h3>
         <p>nacionalidades fotografadas</p>
     </div>
 
 </div>
+</section>
+
+<!-- PORTFÓLIO -->
+
+<section class="portfolio" aria-labelledby="portfolio-title">
+    <div class="portfolio-intro">
+        <p class="section-kicker">Histórias reais, olhares atentos</p>
+        <h2 id="portfolio-title">A beleza que acontece sem pedir licença</h2>
+        <p>
+            Fotografamos a atmosfera, os gestos e tudo aquilo que torna uma celebração
+            verdadeiramente única. Imagens espontâneas, com intenção editorial e a elegância
+            de quem prefere viver o momento a encená-lo.
+        </p>
+        <p class="portfolio-hint">Deslize para conhecer mais histórias</p>
+    </div>
+
+    <div class="portfolio-grid" aria-label="Galeria de fotografias de casamento">
+        <figure class="portfolio-item portfolio-item--feature">
+            <img src="img-webp/portfolio-19.webp" width="1920" height="1280" alt="Casal em um momento íntimo dentro de um carro clássico" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-14.webp" width="1280" height="1920" alt="Retrato espontâneo da noiva durante os preparativos" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-07.webp" width="1920" height="1280" alt="Casal caminhando pelas ruas de uma cidade histórica" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-08.webp" width="1920" height="1280" alt="Silhueta do casal diante da paisagem urbana ao entardecer" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-09.webp" width="1280" height="1920" alt="Enquadramento em preto e branco de um gesto íntimo do casal" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--feature">
+            <img src="img-webp/portfolio-12.webp" width="1500" height="1000" alt="Casal durante a cerimônia em uma fotografia documental em preto e branco" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-13.webp" width="1500" height="1000" alt="Convidados brindando e celebrando espontaneamente" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-05.webp" width="1280" height="1920" alt="Noiva em movimento durante a celebração" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-06.webp" width="1280" height="1920" alt="Noivos trocando olhares durante a cerimônia" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-11.webp" width="1500" height="1000" alt="Casal caminhando junto após a cerimônia" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-10.webp" width="1280" height="1920" alt="Casal se beijando entre luz e natureza" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--feature">
+            <img src="img-webp/portfolio-15.webp" width="1920" height="1280" alt="Primeira dança registrada em preto e branco" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-16.webp" width="1781" height="1187" alt="Pista de dança cheia durante a festa de casamento" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-17.webp" width="1920" height="1280" alt="Retrato da noiva envolvida por luz quente" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-18.webp" width="1280" height="1920" alt="Retrato editorial do casal em uma praça italiana" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--finale">
+            <img src="img-webp/portfolio-20.webp" width="1920" height="1280" alt="Casal ao lado de um carro clássico com o véu em movimento" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/fotos site 2026 (4 de 6).webp" width="1080" height="720" alt="Noiva à beira-mar com vestido e véu em tons suaves" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-03.webp" width="1920" height="1280" alt="Casal diante do lago e das montanhas de Malcesine" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-05.webp" width="1920" height="1280" alt="Casal caminhando por um campo em um ensaio espontâneo" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-06.webp" width="1920" height="1280" alt="Casal compartilhando um momento descontraído ao ar livre" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-extra-09.webp" width="720" height="1080" alt="Detalhe das mãos e do anel de noivado" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-10.webp" width="1920" height="1280" alt="Casal fotografado em Firenze durante a luz dourada" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-extra-11.webp" width="1280" height="1920" alt="Retrato íntimo do casal em preto e branco" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-13.webp" width="1920" height="1280" alt="Noivo ajustando o traje antes da cerimônia" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-14.webp" width="1920" height="1280" alt="Casal caminhando junto durante o first look" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-15.webp" width="1920" height="1280" alt="Noiva se preparando com pessoas importantes ao seu redor" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-16.webp" width="1920" height="1280" alt="Abraço emocionado durante os preparativos do casamento" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-17.webp" width="1920" height="1280" alt="Casal e convidados diante de uma paisagem entre montanhas" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-18.webp" width="1920" height="1280" alt="Noiva em um momento silencioso antes da cerimônia" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-19.webp" width="1920" height="1280" alt="Casal chegando ao casamento em uma cena em preto e branco" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-20.webp" width="1920" height="1280" alt="Noiva compartilhando um momento com sua mãe" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-21.webp" width="1920" height="1280" alt="Entrada dos noivos em uma cerimônia clássica" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-22.webp" width="1920" height="1280" alt="Noiva dançando durante a celebração" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-23.webp" width="1920" height="1280" alt="Arquitetura portuguesa iluminada durante a noite" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-extra-24.webp" width="1280" height="1920" alt="Luz de velas no interior de uma igreja histórica em Portugal" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-26.webp" width="1920" height="1280" alt="Paisagem campestre da Irlanda sob céu aberto" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--portrait">
+            <img src="img-webp/portfolio-extra-28.webp" width="1280" height="1920" alt="Canal de Veneza entre fachadas históricas" loading="lazy" decoding="async">
+        </figure>
+
+        <figure class="portfolio-item portfolio-item--wide">
+            <img src="img-webp/portfolio-extra-29.webp" width="1920" height="1280" alt="Retrato espontâneo durante o entardecer em Veneza" loading="lazy" decoding="async">
+        </figure>
+    </div>
+</section>
+
+<section class="story-section story-section--white" aria-labelledby="ensaios-title">
+    <div class="story-section__inner story-section__inner--reverse">
+        <div class="story-section__copy">
+            <p class="section-kicker">Antes do sim</p>
+            <h2 id="ensaios-title">Um passeio, não uma sessão de poses</h2>
+            <p>
+                O ensaio é um tempo para desacelerar e reconhecer a forma como vocês já se
+                olham. Com direção sutil, transformamos ruas, viagens e gestos cotidianos em
+                fotografias naturais, sofisticadas e cheias de identidade.
+            </p>
+        </div>
+        <div class="story-section__gallery">
+            <figure class="story-image story-image--feature">
+                <img src="img-webp/portfolio-extra-04.webp" width="1280" height="1920" alt="Casal caminhando por uma rua histórica italiana" loading="lazy" decoding="async">
+            </figure>
+            <figure class="story-image">
+                <img src="img-webp/portfolio-extra-08.webp" width="1080" height="720" alt="Casal durante um ensaio ao pôr do sol em Firenze" loading="lazy" decoding="async">
+            </figure>
+            <figure class="story-image">
+                <img src="img-webp/portfolio-extra-12.webp" width="1080" height="1350" alt="Casal à beira-mar durante um ensaio em Mallorca" loading="lazy" decoding="async">
+            </figure>
+        </div>
+    </div>
+</section>
 
 
 <!--DEPOIMENTOS-->
 
 <!-- DEPOIMENTOS -->
 
+<section class="testimonials-section" aria-labelledby="depoimentos-title">
 <div class="depo-cards-title">
-    <h2>Depoimentos</h2>
+    <h2 id="depoimentos-title">Depoimentos</h2>
 </div>
 
 <div class="depo-cards">
 
-    <div class="depo-card">
+    <article class="depo-card">
         <div class="depo-image">
-            <img src="img/laura-e-ettore.jpg" alt="Laura e Ettore">
+            <img src="img-webp/Laura-e-ettore.webp" alt="Laura e Ettore">
         </div>
 
-        <h4>Laura & Ettore</h4>
+        <h3>Laura & Ettore</h3>
         <p class="country">Itália</p>
 
         <p>"Rafael e Jeanine são duas pessoas adoráveis, que atenderam todas as nossas necessidades em nosso dia especial. Profissionais, pontuais, atenciosos, demonstraram calma e tranquilidade mesmo nos momentos mais agitados. As fotos estão muito bonitas, assim como o álbum de fotos e o vídeo que fizeram. Recebemos todas as fotos poucos dias após a cerimônia, muito apreciadas! Agradeço de coração, Rafael e Jeanine!"</p>
-    </div>
+    </article>
 
-    <div class="depo-card">
+    <article class="depo-card">
         <div class="depo-image">
-            <img src="img/yulia-e-donal.jpg" alt="Yuliya e Donal">
+            <img src="img-webp/yulia-e-donal.webp" alt="Yuliya e Donal">
         </div>
 
-        <h4>Yuliya & Donal</h4>
+        <h3>Yuliya & Donal</h3>
         <p class="country">Irlanda</p>
 
         <p>"Depois de pesquisar muitos fotógrafos, encontramos Rafael e Jeanine e tivemos a certeza de que eram a escolha certa. O profissionalismo, a sensibilidade e o olhar único deles transformaram nosso casamento em lembranças inesquecíveis. Cada emoção foi registrada com perfeição."</p>
-    </div>
+    </article>
 
-    <div class="depo-card">
+    <article class="depo-card">
         <div class="depo-image">
-            <img src="img/samantha-e-gregory.jpg" alt="Samantha e Gregory">
+            <img src="img-webp/samantha-e-gregory.webp" alt="Samantha e Gregory">
         </div>
 
-        <h4>Samantha & Gregory</h4>
+        <h3>Samantha & Gregory</h3>
         <p class="country">Inglaterra</p>
 
         <p>"Tivemos nosso dia especial ontem e ficamos absolutamente emocionados por termos escolhido Rafael como nosso fotógrafo! Tanto ele quanto Jeanine foram gentis, pacientes e tranquilos conosco, permitindo que aproveitássemos cada momento. Eles nos orientaram com naturalidade, acolheram nossas ideias e registraram tudo com profissionalismo e sensibilidade. Recomendamos Rafael e Jeanine de todo o coração!"</p>
-    </div>
+    </article>
 
 </div>
+</section>
+
+<section class="story-section story-section--dark" aria-labelledby="destinos-title">
+    <div class="story-section__inner">
+        <div class="story-section__copy">
+            <p class="section-kicker">Repertório de mundo</p>
+            <h2 id="destinos-title">Lugares que despertam histórias</h2>
+            <p>
+                Fotografar o mundo também educa o olhar. Ruas antigas, cidades vivas e
+                arquiteturas que atravessam séculos inspiram nossa maneira de observar uma
+                celebração: atentos à atmosfera, à cultura e ao que acontece nas bordas.
+            </p>
+        </div>
+        <div class="story-section__gallery">
+            <figure class="story-image story-image--feature">
+                <img src="img-webp/portfolio-extra-25.webp" width="1920" height="1280" alt="Vista histórica de Verona junto ao rio" loading="lazy" decoding="async">
+            </figure>
+            <figure class="story-image">
+                <img src="img-webp/portfolio-extra-27.webp" width="1920" height="1280" alt="Silhueta urbana fotografada em Roma" loading="lazy" decoding="async">
+            </figure>
+            <figure class="story-image">
+                <img src="img-webp/portfolio-extra-30.webp" width="1920" height="1080" alt="Interior monumental de uma catedral europeia" loading="lazy" decoding="async">
+            </figure>
+        </div>
+    </div>
+</section>
 
 <!--FAQ-->
 
-<section class="FAQ">
+<section class="FAQ" aria-labelledby="faq-title">
 
     <div class="FAQ-title">
-        <h2>Perguntas Frequentes</h2>
+        <h2 id="faq-title">Perguntas Frequentes</h2>
     </div>
 
     <div class="FAQ-cards">
 
         <div class="FAQ-column">
 
-            <div class="FAQ-card">
-                <h4>1. Com quanta antecedência devo reservar a data?</h4>
+            <details class="FAQ-card">
+                <summary>1. Com quanta antecedência devo reservar a data?</summary>
                 <p>Recomendamos reservar entre 8 e 18 meses antes do casamento. Datas muito disputadas costumam ser preenchidas rapidamente.</p>
-            </div>
+            </details>
 
-            <div class="FAQ-card">
-                <h4>2. Vocês atendem casamentos fora da nossa cidade?</h4>
+            <details class="FAQ-card">
+                <summary>2. Vocês atendem casamentos fora da nossa cidade?</summary>
                 <p>Sim. Fotografamos casamentos em todo o Brasil e também no exterior.</p>
-            </div>
+            </details>
 
-            <div class="FAQ-card">
-                <h4>3. Quantas fotos vamos receber?</h4>
+            <details class="FAQ-card">
+                <summary>3. Quantas fotos vamos receber?</summary>
                 <p>A quantidade varia conforme a cobertura contratada. Nossa prioridade é entregar uma seleção completa, sem limitar artificialmente os melhores momentos.</p>
-            </div>
+            </details>
 
         </div>
 
         <div class="FAQ-column">
 
-            <div class="FAQ-card">
-                <h4>4. Em quanto tempo as fotos são entregues?</h4>
+            <details class="FAQ-card">
+                <summary>4. Em quanto tempo as fotos são entregues?</summary>
                 <p>O prazo é informado em contrato. Todas as imagens são entregues editadas em alta resolução, por meio de uma galeria online.</p>
-            </div>
+            </details>
 
-            <div class="FAQ-card">
-                <h4>5. Vocês também produzem álbuns?</h4>
+            <details class="FAQ-card">
+                <summary>5. Vocês também produzem álbuns?</summary>
                 <p>Sim. Trabalhamos com álbuns de alta qualidade, desenvolvidos para preservar as fotografias por muitos anos.</p>
-            </div>
+            </details>
 
-            <div class="FAQ-card">
-                <h4>6. Como podemos solicitar um orçamento?</h4>
+            <details class="FAQ-card">
+                <summary>6. Como podemos solicitar um orçamento?</summary>
                 <p>Basta entrar em contato pelo WhatsApp ou pelo formulário do site. Enviaremos todas as informações e ajudaremos a escolher a cobertura ideal.</p>
-            </div>
+            </details>
 
         </div>
 
@@ -226,15 +470,17 @@
 
 </section>
 
+</main>
 
-<!--FOOTER Aqui finalizei o primeiro site que fiz na vida-->
 
-<footer class="footer">
+<!--FOOTER Aqui finalizei o primeiro site que fiz na vida do zero ao primeiro layout-->
+
+<footer class="footer" id="contato">
 
     <div class="footer-container">
 
         <div class="footer-column">
-            <h3>Jeanine Vidal Photography</h3>
+            <h2>Jeanine Vidal Photography</h2>
 
             <p>
                 Fotografando histórias com sensibilidade,
@@ -243,30 +489,35 @@
         </div>
 
         <div class="footer-column">
-            <h3>Navegação</h3>
+            <h2>Contato</h2>
 
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </div>
+            <div class="social-buttons">
+                <a
+                    class="social-btn whatsapp-btn"
+                    href="https://wa.me/5555999948585?text=Gostei%20do%20seu%20trabalho%2C%20podemos%20conversar%20mais%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Conversar com Jeanine Vidal pelo WhatsApp"
+                >
+                    WhatsApp
+                </a>
 
-        <div class="footer-column">
-            <h3>Contato</h3>
-
-            <ul>
-                <li>WhatsApp</li>
-                <li>E-mail</li>
-                <li>Instagram</li>
-            </ul>
+                <a
+                    class="social-btn instagram-btn"
+                    href="https://www.instagram.com/jeanine_vidal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Acessar o Instagram de Jeanine Vidal"
+                >
+                    Instagram
+                </a>
+            </div>
         </div>
 
     </div>
 
     <div class="footer-bottom">
-        <p>© 2026 Jeanine Vidal Photography. Todos os direitos reservados.</p>
+        <p>© 2026 Jeanine Vidal Photography. Todos os direitos reservados. Site criado carinhosamente por Rafael Slovinscki.</p>
     </div>
 
 </footer>

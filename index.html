@@ -6,6 +6,7 @@
     <title>Fotografia de Casamentos | Jeanine Vidal Photography</title>
     <meta name="description" content="Fotografia de casamentos com sensibilidade, autenticidade e emoção. Conheça o trabalho de Jeanine Vidal e Rafael e conte-nos a história de vocês.">
     <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/webp" href="img-webp/logo-jeanine-vidal.webp">
     <link rel="canonical" href="https://centrofotos.com.br/">
 
     <meta property="og:locale" content="pt_BR">
@@ -26,14 +27,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&amp;family=Inter:ital,wght@0,300;0,400;0,600;1,300&amp;display=swap" rel="stylesheet">
     
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
 </head>
 
     <!--NAVBAR-->
 <body>
+
+        <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
         <header class="navbar-container">
 
@@ -44,12 +48,22 @@
                         src="img-webp/logo-jeanine-vidal.webp"
                         alt="Logo Jeanine Vidal Photography"
                         class="logo"
+                        width="1080"
+                        height="1080"
                     >
                 </a>
 
-                <ul class="navbar-items">
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+                    <span class="menu-toggle__label">Menu</span>
+                    <span class="menu-toggle__icon" aria-hidden="true"></span>
+                </button>
+
+                <ul class="navbar-items" id="menu-principal">
                     <li><a href="#home">HOME</a></li>
                     <li><a href="#sobre">SOBRE</a></li>
+                    <!-- TODO: substituir pelo destino oficial do Centro Select. -->
+                    <li><span class="nav-link nav-link--pending" aria-label="Select — endereço pendente">SELECT</span></li>
+                    <li><a href="ladob/">LADOb.</a></li>
                     <li><a href="#contato">CONTATO</a></li>
                 </ul>
 
@@ -57,7 +71,7 @@
 
         </header>
 
-        <main>
+        <main id="conteudo">
 
         <!-- HERO -->
 
@@ -81,7 +95,7 @@
         </section>
     <!-- Sobre nós -->
     <section class="about-us" id="sobre" aria-labelledby="sobre-title">
-        <img src="img-webp/jeanine_rafael.webp" alt="Jeanine e Rafael">
+        <img src="img-webp/jeanine_rafael.webp" width="720" height="1080" alt="Jeanine e Rafael" loading="lazy" decoding="async">
 
         <div class="about-text">
             <h2 id="sobre-title">Quem somos</h2>
@@ -153,7 +167,7 @@
 
 <!-- PORTFÓLIO -->
 
-<section class="portfolio" aria-labelledby="portfolio-title">
+<section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
     <div class="portfolio-intro">
         <p class="section-kicker">Histórias reais, olhares atentos</p>
         <h2 id="portfolio-title">A beleza que acontece sem pedir licença</h2>
@@ -359,7 +373,7 @@
 
     <article class="depo-card">
         <div class="depo-image">
-            <img src="img-webp/Laura-e-ettore.webp" alt="Laura e Ettore">
+            <img src="img-webp/Laura-e-ettore.webp" width="1080" height="720" alt="Laura e Ettore" loading="lazy" decoding="async">
         </div>
 
         <h3>Laura & Ettore</h3>
@@ -370,7 +384,7 @@
 
     <article class="depo-card">
         <div class="depo-image">
-            <img src="img-webp/yulia-e-donal.webp" alt="Yuliya e Donal">
+            <img src="img-webp/yulia-e-donal.webp" width="1080" height="720" alt="Yuliya e Donal" loading="lazy" decoding="async">
         </div>
 
         <h3>Yuliya & Donal</h3>
@@ -381,7 +395,7 @@
 
     <article class="depo-card">
         <div class="depo-image">
-            <img src="img-webp/samantha-e-gregory.webp" alt="Samantha e Gregory">
+            <img src="img-webp/samantha-e-gregory.webp" width="1080" height="720" alt="Samantha e Gregory" loading="lazy" decoding="async">
         </div>
 
         <h3>Samantha & Gregory</h3>

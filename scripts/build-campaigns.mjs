@@ -13,7 +13,8 @@ const replacements = {
     OG_ALT: `${campaign.clientName} — ${campaign.campaignName}`,
     HERO_IMAGE: campaign.heroImage,
     CLIENT_NAME: campaign.clientName,
-    CAMPAIGN_NAME: campaign.campaignName
+    CAMPAIGN_NAME: campaign.campaignName,
+    ASSET_VERSION: campaign.assetVersion
 };
 
 const html = Object.entries(replacements).reduce(

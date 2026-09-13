@@ -32,6 +32,7 @@ export const campaign = {
     clientSlug: 'atelier-23',
     campaignName: 'SETEMBRO 2026',
     campaignSlug: 'setembro-2026',
+    assetVersion: '20260913-1',
     month: 'Setembro',
     year: 2026,
     logo: null,

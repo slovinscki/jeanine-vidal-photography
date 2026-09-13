@@ -1,5 +1,8 @@
-import { campaign } from '/content/campaigns/atelier-23/setembro-2026/campaign.js';
-import { CampaignLayout } from '/content/campaign/components.js';
+const assetVersion = new URL(import.meta.url).search;
+const [{ campaign }, { CampaignLayout }] = await Promise.all([
+    import(`/content/campaigns/atelier-23/setembro-2026/campaign.js${assetVersion}`),
+    import(`/content/campaign/components.js${assetVersion}`)
+]);
 
 const root = document.querySelector('[data-campaign-root]');
 

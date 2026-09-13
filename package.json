@@ -1,0 +1,10 @@
+{
+  "name": "centrofotos-static-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/validate-site.mjs",
+    "build": "node scripts/build-campaigns.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}

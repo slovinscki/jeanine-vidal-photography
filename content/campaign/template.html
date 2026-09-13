@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{CANONICAL}}">
+    <link rel="icon" type="image/webp" href="/img-webp/logo-jeanine-vidal.webp">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:url" content="{{CANONICAL}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1500">
+    <meta property="og:image:alt" content="{{OG_ALT}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{TITLE}}">
+    <meta name="twitter:description" content="{{DESCRIPTION}}">
+    <meta name="twitter:image" content="{{OG_IMAGE}}">
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin>
+    <link rel="preload" as="image" href="{{HERO_IMAGE}}" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/content/campaign/styles.css">
+    <script type="module" src="/content/campaign/app.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#campaign">Ir para a campanha</a>
+    <header class="campaign-header">
+        <a href="#campaign" aria-label="{{CLIENT_NAME}} — início da campanha">{{CLIENT_NAME}}</a>
+        <span>{{CAMPAIGN_NAME}}</span>
+    </header>
+    <main id="campaign" data-campaign-root></main>
+    <noscript>Ative o JavaScript para visualizar esta campanha.</noscript>
+</body>
+</html>

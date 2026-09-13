@@ -19,7 +19,7 @@ for (const script of scripts) {
     if (result.status !== 0) throw new Error(`${script}: ${result.stderr}`);
 }
 
-for (const required of ['index.html', 'content/index.html', 'ladob/index.html', 'content/campaign/template.html', 'content/campaign/styles.css']) {
+for (const required of ['index.html', 'content/index.html', 'ladob/index.html', 'content/campaign/template.html', 'content/campaign/styles.css', 'vercel.json']) {
     await access(path.join(root, required));
 }
 

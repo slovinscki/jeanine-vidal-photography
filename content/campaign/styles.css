@@ -65,8 +65,10 @@ button { color: inherit; font: inherit; }
 .carousel-dots button[aria-current="true"] { opacity: 1; transform: scale(1.35); }
 .carousel-arrows { display: none; gap: .3rem; }
 .carousel-arrows button { width: 2.45rem; height: 2.45rem; border: 1px solid currentColor; border-radius: 50%; background: transparent; cursor: pointer; }
-.look-cta { min-height: 3.5rem; display: flex; align-items: center; justify-content: space-between; margin: 2.4rem 1.1rem 0 5.5rem; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; font-size: .65rem; font-weight: 600; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
-.look-cta i { font-style: normal; }
+.look-actions { margin: 2.4rem 1.1rem 0 5.5rem; }
+.look-cta, .look-download { min-height: 3.5rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid currentColor; font-size: .65rem; font-weight: 600; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
+.look-download { border-bottom: 1px solid currentColor; }
+.look-cta i, .look-download i { font-style: normal; }
 
 .look--ink, .look--night { background: var(--ink); color: #fff; }
 .look--red { background: var(--rust); color: #fff; }
@@ -109,7 +111,7 @@ button { color: inherit; font: inherit; }
     .carousel-track { gap: 1rem; padding: 0 3vw; }
     .carousel-slide { width: min(66vw, 38rem); }
     .carousel-meta { padding-right: 3vw; padding-left: 3vw; }
-    .look-cta { max-width: 31rem; margin-right: 3vw; margin-left: auto; }
+    .look-actions { max-width: 31rem; margin-right: 3vw; margin-left: auto; }
     .campaign-end, .campaign-footer { padding-right: 3vw; padding-left: 3vw; }
 }
 
@@ -131,7 +133,7 @@ button { color: inherit; font: inherit; }
     .carousel-slide { width: min(46vw, 40rem); }
     .carousel-meta { padding-right: 2.5vw; padding-left: 0; }
     .carousel-arrows { display: flex; }
-    .look-cta { grid-column: 2; width: min(30rem, 48vw); margin: 2.8rem 2.5vw 0 auto; }
+    .look-actions { grid-column: 2; width: min(30rem, 48vw); margin: 2.8rem 2.5vw 0 auto; }
     .look--rhythm-2 .look-heading { padding-top: 16vh; }
     .look--rhythm-2 .carousel-slide { width: min(42vw, 36rem); }
     .look--rhythm-3 { grid-template-columns: 33% 67%; }
@@ -145,7 +147,7 @@ button { color: inherit; font: inherit; }
 }
 
 @media (hover: hover) {
-    .look-cta:hover, .campaign-end a:hover, .campaign-footer a:hover { opacity: .6; }
+    .look-cta:hover, .look-download:hover, .campaign-end a:hover, .campaign-footer a:hover { opacity: .6; }
     .carousel-arrows button:hover { background: currentColor; color: var(--paper); }
 }
 

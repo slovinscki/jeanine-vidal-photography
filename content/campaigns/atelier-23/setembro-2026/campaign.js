@@ -19,11 +19,14 @@ const makeImages = (photoIds, lookNumber, description) => Array.from({ length: 1
 
 const look = (id, title, subtitle, photoIds, textTitle, textLine, tone) => ({
     id,
+    category: 'fashion',
     title,
     subtitle,
     tone,
     images: makeImages(photoIds, id, subtitle),
     textSlide: { slide: 2, title: textTitle, line: textLine },
+    downloadUrl: `/content/campaigns/atelier-23/setembro-2026/downloads/atelier-23-setembro-2026-look-${String(id).padStart(2, '0')}.zip`,
+    downloadFileName: `atelier-23-setembro-2026-look-${String(id).padStart(2, '0')}.zip`,
     whatsappMessage: `Olá! Vi o Look ${String(id).padStart(2, '0')} da campanha Setembro da Atelier 23 e gostaria de saber mais.`
 });
 
@@ -32,7 +35,7 @@ export const campaign = {
     clientSlug: 'atelier-23',
     campaignName: 'SETEMBRO 2026',
     campaignSlug: 'setembro-2026',
-    assetVersion: '20260913-1',
+    assetVersion: '20260913-2',
     month: 'Setembro',
     year: 2026,
     logo: null,

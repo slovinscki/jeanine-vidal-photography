@@ -60,6 +60,13 @@ export const LookCTA = (campaign, look) => `
         <span>Quero este look</span><i aria-hidden="true">↗</i>
     </a>`;
 
+export const LookDownload = (look) => `
+    <a class="look-download" data-event="look_carousel_download" data-look-id="${look.id}"
+       href="${look.downloadUrl}" download="${look.downloadFileName}"
+       aria-label="Baixar as 10 fotografias do Look ${String(look.id).padStart(2, '0')}">
+        <span>Baixar carrossel completo</span><i aria-hidden="true">↓</i>
+    </a>`;
+
 export const LookSection = (campaign, look, index) => `
     <section class="look look--${look.tone} look--rhythm-${(index % 3) + 1}" data-look-section="${look.id}" aria-labelledby="look-${look.id}-title">
         <header class="look-heading">
@@ -70,7 +77,10 @@ export const LookSection = (campaign, look, index) => `
             </div>
         </header>
         ${LookCarousel(look)}
-        ${LookCTA(campaign, look)}
+        <div class="look-actions">
+            ${LookCTA(campaign, look)}
+            ${LookDownload(look)}
+        </div>
     </section>`;
 
 export const CampaignHero = (campaign) => `

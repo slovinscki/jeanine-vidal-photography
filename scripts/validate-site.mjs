@@ -1,4 +1,4 @@
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,11 +26,18 @@ for (const required of ['index.html', 'content/index.html', 'ladob/index.html', 
 if (campaign.looks.length !== 10) throw new Error('A campanha precisa ter 10 looks.');
 campaign.looks.forEach((look) => {
     if (look.images.length !== 10) throw new Error(`Look ${look.id} precisa ter 10 imagens.`);
+    if (look.category !== 'fashion') throw new Error(`Look ${look.id}: somente fotografia de moda é permitida.`);
     if (look.textSlide.slide !== 2) throw new Error(`Look ${look.id}: o texto editorial deve estar apenas no slide 2.`);
+    if (!look.downloadUrl?.endsWith('.zip') || !look.downloadFileName?.endsWith('.zip')) throw new Error(`Look ${look.id}: download do carrossel não configurado.`);
     look.images.forEach((image) => {
         if (!image.src || !image.srcset || !image.alt || !image.position) throw new Error(`Look ${look.id}: imagem incompleta.`);
     });
 });
+for (const look of campaign.looks) {
+    const zipPath = path.join(root, look.downloadUrl.replace(/^\//, ''));
+    const zipStats = await stat(zipPath);
+    if (zipStats.size < 100_000) throw new Error(`Look ${look.id}: ZIP ausente ou incompleto.`);
+}
 const uniqueImageSources = new Set(campaign.looks.flatMap((look) => look.images.map((image) => image.src))).size;
 if (uniqueImageSources < 90) throw new Error(`Pouca variedade fotográfica: ${uniqueImageSources} fontes únicas.`);
 

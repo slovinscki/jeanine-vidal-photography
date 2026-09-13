@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "node scripts/validate-site.mjs",
     "build": "node scripts/build-campaigns.mjs",
+    "build:downloads": "powershell -NoProfile -File scripts/build-carousel-downloads.ps1",
     "serve": "node scripts/serve.mjs"
   }
 }

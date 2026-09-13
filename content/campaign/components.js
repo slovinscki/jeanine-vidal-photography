@@ -94,7 +94,7 @@ export const CampaignFooter = (campaign) => `
     <footer class="campaign-footer" data-footer>
         <div><strong>${escapeHtml(campaign.clientName)}</strong><span>${escapeHtml(campaign.campaignName)}</span></div>
         <nav aria-label="Contato da loja">
-            <a href="${campaign.instagram}" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+            ${campaign.instagram ? `<a href="${campaign.instagram}" target="_blank" rel="noopener noreferrer">Instagram ↗</a>` : ''}
             <a data-event="campaign_whatsapp_click" href="${whatsappUrl(campaign.whatsappNumber, campaign.whatsappMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
         </nav>
         <p>Content by <a href="/content/">Centrofotos</a> · ${escapeHtml(campaign.stockCredit)}</p>

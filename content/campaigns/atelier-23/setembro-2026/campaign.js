@@ -42,7 +42,7 @@ export const campaign = {
     ogImage: imageUrl(13364875, 1600),
     whatsappNumber: '5555999948585',
     whatsappMessage: 'Vi a campanha Setembro da Atelier 23 e gostaria de saber mais.',
-    instagram: 'https://www.instagram.com/centrofotosagudo/',
+    instagram: null,
     stockCredit: 'Fotografias demonstrativas: Pexels',
     looks: [
         look(1, 'Volume', 'Studio / Form', [15130135,15130136,15130137,15130138,15130139,15130140,15130141,15130142,15130143,15130144], 'NEW DROP', 'Shape, colour, presence.', 'sand'),

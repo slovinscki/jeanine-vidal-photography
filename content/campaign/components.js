@@ -103,7 +103,7 @@ export const LookSection = (campaign, look, index) => `
         ${LookCarousel(look)}
         <div class="look-actions">
             ${LookSelection(look)}
-            ${LookDownload(look)}
+            ${look.downloadUrl ? LookDownload(look) : ''}
         </div>
     </section>`;
 
@@ -129,7 +129,9 @@ export const CampaignFooter = (campaign) => `
         <div><strong>${escapeHtml(campaign.clientName)}</strong><span>${escapeHtml(campaign.campaignName)}</span></div>
         <nav aria-label="Contato da loja">
             ${campaign.instagram ? `<a href="${campaign.instagram}" target="_blank" rel="noopener noreferrer">Instagram ↗</a>` : ''}
-            <a data-event="campaign_whatsapp_click" href="${whatsappUrl(campaign.whatsappNumber, campaign.whatsappMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+            ${campaign.whatsappNumber
+                ? `<a data-event="campaign_whatsapp_click" href="${whatsappUrl(campaign.whatsappNumber, campaign.whatsappMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>`
+                : '<button type="button" data-selection-submit>Falar com a loja ↗</button>'}
         </nav>
         <p>Content by <a href="/content/">Centrofotos</a> · ${escapeHtml(campaign.stockCredit)}</p>
     </footer>`;
@@ -147,4 +149,5 @@ export const CampaignLayout = (campaign) => `
     <div class="mobile-selection-bar" data-mobile-selection hidden>
         <span data-mobile-selection-count></span>
         <button type="button" data-selection-submit>Solicitar preços</button>
-    </div>`;
+    </div>
+    <p class="campaign-contact-status" data-contact-status role="status" aria-live="polite" hidden></p>`;

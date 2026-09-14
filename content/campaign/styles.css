@@ -98,13 +98,14 @@ button { color: inherit; font: inherit; }
 .campaign-footer strong { display: block; font: 300 3rem/1 var(--serif); letter-spacing: -.04em; }
 .campaign-footer span { display: block; margin-top: .5rem; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; opacity: .62; }
 .campaign-footer nav { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,.28); }
-.campaign-footer nav a { padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.28); font-size: .65rem; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+.campaign-footer nav a, .campaign-footer nav button { padding: 1rem 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.28); background: transparent; color: inherit; font: inherit; font-size: .65rem; letter-spacing: .12em; text-align: left; text-decoration: none; text-transform: uppercase; cursor: pointer; }
 .campaign-footer > p { margin: 3rem 0 0; font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; opacity: .5; }
 .campaign-footer > p a { text-underline-offset: .2rem; }
 
 .mobile-selection-bar { position: fixed; z-index: 25; right: .65rem; bottom: max(.65rem, env(safe-area-inset-bottom)); left: .65rem; min-height: 3.35rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .8rem; padding: .45rem .55rem .45rem 1rem; border-radius: .2rem; background: rgba(23,23,19,.95); color: #fff; box-shadow: 0 7px 28px rgba(0,0,0,.24); backdrop-filter: blur(12px); font-size: .62rem; font-weight: 600; letter-spacing: .08em; }
 .mobile-selection-bar > span { text-transform: uppercase; }
 .mobile-selection-bar button { min-height: 2.45rem; padding: 0 .85rem; border: 1px solid rgba(255,255,255,.45); border-radius: .12rem; background: transparent; color: #fff; font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.campaign-contact-status { position: fixed; z-index: 40; top: 4.4rem; right: .75rem; left: .75rem; margin: 0 auto; max-width: 34rem; padding: 1rem 1.15rem; border-radius: .18rem; background: rgba(23,23,19,.96); color: #fff; box-shadow: 0 7px 28px rgba(0,0,0,.24); font-size: .72rem; line-height: 1.45; text-align: center; }
 
 @keyframes loading-shimmer { to { background-position: -220% 0; } }
 
@@ -152,7 +153,7 @@ button { color: inherit; font: inherit; }
 }
 
 @media (hover: hover) {
-    .look-cta:hover, .look-download:hover, .selection-submit:hover, .campaign-footer a:hover { opacity: .6; }
+    .look-cta:hover, .look-download:hover, .selection-submit:hover, .campaign-footer a:hover, .campaign-footer button:hover { opacity: .6; }
     .carousel-arrows button:not(:disabled):hover { background: currentColor; color: var(--paper); }
 }
 

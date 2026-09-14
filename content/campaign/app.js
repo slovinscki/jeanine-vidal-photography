@@ -124,6 +124,28 @@ const setupSelection = () => {
         else sessionStorage.removeItem(storageKey);
     };
 
+    let contactStatusTimer;
+    const showContactStatus = (message) => {
+        const status = document.querySelector('[data-contact-status]');
+        if (!status) return;
+        status.textContent = message;
+        status.hidden = false;
+        clearTimeout(contactStatusTimer);
+        contactStatusTimer = setTimeout(() => { status.hidden = true; }, 6000);
+    };
+
+    const copyContactMessage = async (message) => {
+        try {
+            if (window.navigator.clipboard) {
+                await window.navigator.clipboard.writeText(message);
+                return true;
+            }
+        } catch {
+            // The secure Clipboard API can be unavailable in local previews.
+        }
+        return false;
+    };
+
     const render = () => {
         document.querySelectorAll('[data-look-selection]').forEach((selection) => {
             const selected = selectionFor(selection.dataset.lookId);
@@ -151,27 +173,38 @@ const setupSelection = () => {
         }
     };
 
-    const openWhatsapp = () => {
-        if (!selectedLooks.length) {
-            window.open(`https://wa.me/${campaign.whatsappNumber}?text=${encodeURIComponent(campaign.whatsappMessage)}`, '_blank', 'noopener,noreferrer');
-            track('campaign_whatsapp_click', { selectedLookCount: 0 });
-            return;
-        }
-
+    const openWhatsapp = async () => {
         document.querySelectorAll('[data-size-error]').forEach((element) => { element.textContent = ''; });
-        const incomplete = selectedLooks.find((item) => !item.size);
-        if (incomplete) {
-            const selection = document.querySelector(`[data-look-selection][data-look-id="${incomplete.lookId}"]`);
-            selection.querySelector('[data-size-error]').textContent = 'Escolha um tamanho antes de continuar.';
-            selection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            selection.querySelector('[data-size]')?.focus({ preventScroll: true });
-            track('selection_validation_error', { lookId: incomplete.lookId });
+        if (selectedLooks.length) {
+            const incomplete = selectedLooks.find((item) => !item.size);
+            if (incomplete) {
+                const selection = document.querySelector(`[data-look-selection][data-look-id="${incomplete.lookId}"]`);
+                selection.querySelector('[data-size-error]').textContent = 'Escolha um tamanho antes de continuar.';
+                selection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                selection.querySelector('[data-size]')?.focus({ preventScroll: true });
+                track('selection_validation_error', { lookId: incomplete.lookId });
+                return;
+            }
+        }
+
+        const message = selectedLooks.length
+            ? selectionWhatsappMessage(campaign, selectedLooks)
+            : campaign.whatsappMessage;
+
+        if (!campaign.whatsappNumber) {
+            const copied = await copyContactMessage(message);
+            showContactStatus(copied
+                ? `Mensagem para a ${campaign.storeName} copiada. O canal da loja poderá ser conectado aqui.`
+                : `Sua mensagem para a ${campaign.storeName} está pronta. O canal da loja poderá ser conectado aqui.`);
+            track('campaign_contact_prepared', { selectedLookCount: selectedLooks.length });
             return;
         }
 
-        const message = selectionWhatsappMessage(campaign, selectedLooks);
         window.open(`https://wa.me/${campaign.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
-        track('selection_whatsapp_click', { selectedLookCount: selectedLooks.length, looks: selectedLooks.map(({ lookId, size }) => ({ lookId, size })) });
+        track(selectedLooks.length ? 'selection_whatsapp_click' : 'campaign_whatsapp_click', {
+            selectedLookCount: selectedLooks.length,
+            looks: selectedLooks.map(({ lookId, size }) => ({ lookId, size }))
+        });
     };
 
     document.querySelectorAll('[data-select-look]').forEach((button) => {

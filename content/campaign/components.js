@@ -8,6 +8,23 @@ const escapeHtml = (value = '') => String(value)
 export const whatsappUrl = (number, message) =>
     `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
+export const selectionWhatsappMessage = (campaign, selectedLooks) => {
+    const storeName = campaign.storeName || campaign.clientName;
+    const collectionName = campaign.collectionName || campaign.campaignName;
+    const lines = selectedLooks.map((item) => {
+        const look = campaign.looks.find((candidate) => Number(candidate.id) === Number(item.lookId));
+        const number = String(item.lookId).padStart(2, '0');
+        return `Look ${number}${look?.title ? ` — ${look.title}` : ''} — tamanho ${item.size}`;
+    });
+    return [
+        `Olá! Vi a ${collectionName} da ${storeName} e gostaria de consultar valores e disponibilidade destes looks:`,
+        '',
+        ...lines,
+        '',
+        'Pode me passar os preços e disponibilidade?'
+    ].join('\n');
+};
+
 export const CarouselSlide = ({ image, index, textSlide, lookId }) => {
     const hasText = index + 1 === textSlide.slide;
     return `
@@ -26,7 +43,7 @@ export const CarouselSlide = ({ image, index, textSlide, lookId }) => {
                     data-image
                 >
                 ${hasText ? `
-                    <div class="slide-copy" aria-label="Texto editorial do Look ${String(lookId).padStart(2, '0')}">
+                    <div class="slide-copy" role="note" aria-label="Texto editorial do Look ${String(lookId).padStart(2, '0')}">
                         <strong>${escapeHtml(textSlide.title)}</strong>
                         <span>${escapeHtml(textSlide.line)}</span>
                     </div>` : ''}
@@ -36,29 +53,36 @@ export const CarouselSlide = ({ image, index, textSlide, lookId }) => {
 
 export const LookCarousel = (look) => `
     <div class="carousel" data-carousel data-look-id="${look.id}">
-        <div class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="Carrossel do Look ${String(look.id).padStart(2, '0')}">
+        <div class="carousel-viewport" data-carousel-viewport tabindex="0" role="region" aria-roledescription="carrossel" aria-label="Carrossel do Look ${String(look.id).padStart(2, '0')}">
             <ol class="carousel-track">
                 ${look.images.map((image, index) => CarouselSlide({ image, index, textSlide: look.textSlide, lookId: look.id })).join('')}
             </ol>
         </div>
         <div class="carousel-meta">
-            <p class="carousel-counter" aria-live="polite"><span data-current>01</span> / 10</p>
-            <div class="carousel-dots" aria-label="Selecionar fotografia">
+            <p class="carousel-counter" aria-live="polite"><span data-current>01</span> / ${String(look.images.length).padStart(2, '0')}</p>
+            <div class="carousel-dots" role="group" aria-label="Selecionar fotografia">
                 ${look.images.map((_, index) => `<button type="button" data-dot="${index}" aria-label="Ir para a foto ${index + 1}"${index === 0 ? ' aria-current="true"' : ''}></button>`).join('')}
             </div>
             <div class="carousel-arrows">
-                <button type="button" data-prev aria-label="Fotografia anterior">←</button>
+                <button type="button" data-prev aria-label="Fotografia anterior" disabled>←</button>
                 <button type="button" data-next aria-label="Próxima fotografia">→</button>
             </div>
         </div>
     </div>`;
 
-export const LookCTA = (campaign, look) => `
-    <a class="look-cta" data-event="look_whatsapp_click" data-look-id="${look.id}"
-       href="${whatsappUrl(campaign.whatsappNumber, look.whatsappMessage)}"
-       target="_blank" rel="noopener noreferrer">
-        <span>Quero este look</span><i aria-hidden="true">↗</i>
-    </a>`;
+export const LookSelection = (look) => `
+    <div class="look-selection" data-look-selection data-look-id="${look.id}">
+        <button class="look-cta" type="button" data-select-look aria-pressed="false">
+            <span data-select-label>Quero este look</span><i aria-hidden="true">＋</i>
+        </button>
+        <div class="size-picker" data-size-picker hidden>
+            <p id="look-${look.id}-size-label">Escolha o tamanho</p>
+            <div role="group" aria-labelledby="look-${look.id}-size-label">
+                ${look.availableSizes.map((size) => `<button type="button" data-size="${escapeHtml(size)}" aria-pressed="false">${escapeHtml(size)}</button>`).join('')}
+            </div>
+            <p class="size-error" data-size-error role="status" aria-live="polite"></p>
+        </div>
+    </div>`;
 
 export const LookDownload = (look) => `
     <a class="look-download" data-event="look_carousel_download" data-look-id="${look.id}"
@@ -78,7 +102,7 @@ export const LookSection = (campaign, look, index) => `
         </header>
         ${LookCarousel(look)}
         <div class="look-actions">
-            ${LookCTA(campaign, look)}
+            ${LookSelection(look)}
             ${LookDownload(look)}
         </div>
     </section>`;
@@ -112,15 +136,15 @@ export const CampaignFooter = (campaign) => `
 
 export const CampaignLayout = (campaign) => `
     ${CampaignHero(campaign)}
-    <div class="campaign-intro" aria-label="Apresentação da coleção">
-        <p>10 looks / 100 frames</p><span>Scroll. Swipe. Select.</span>
-    </div>
     ${campaign.looks.map((look, index) => LookSection(campaign, look, index)).join('')}
     <section class="campaign-end" aria-labelledby="campaign-end-title">
         <p>${escapeHtml(campaign.month)} / ${campaign.year}</p>
         <h2 id="campaign-end-title">Found your look?</h2>
-        <a data-event="campaign_whatsapp_click" href="${whatsappUrl(campaign.whatsappNumber, campaign.whatsappMessage)}" target="_blank" rel="noopener noreferrer">Falar com a loja ↗</a>
+        <button class="selection-submit" type="button" data-selection-submit>Falar com a loja <span aria-hidden="true">↗</span></button>
         ${CampaignShare()}
     </section>
     ${CampaignFooter(campaign)}
-    <a class="mobile-store-cta" data-mobile-cta data-event="campaign_whatsapp_click" href="${whatsappUrl(campaign.whatsappNumber, campaign.whatsappMessage)}" target="_blank" rel="noopener noreferrer">Falar com a loja <span aria-hidden="true">↗</span></a>`;
+    <div class="mobile-selection-bar" data-mobile-selection hidden>
+        <span data-mobile-selection-count></span>
+        <button type="button" data-selection-submit>Solicitar preços</button>
+    </div>`;

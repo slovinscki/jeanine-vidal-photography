@@ -1,10 +1,13 @@
+const root = document.querySelector('[data-campaign-root]');
 const assetVersion = new URL(import.meta.url).search;
-const [{ campaign }, { CampaignLayout }] = await Promise.all([
-    import(`/content/campaigns/atelier-23/setembro-2026/campaign.js${assetVersion}`),
+const campaignSource = root?.dataset.campaignSource;
+
+if (!campaignSource) throw new Error('Campaign source was not provided.');
+
+const [{ campaign }, { CampaignLayout, selectionWhatsappMessage }] = await Promise.all([
+    import(`${campaignSource}${assetVersion}`),
     import(`/content/campaign/components.js${assetVersion}`)
 ]);
-
-const root = document.querySelector('[data-campaign-root]');
 
 const track = (event, payload = {}) => {
     const detail = {
@@ -34,10 +37,15 @@ const setupCarousel = (carousel) => {
     const slides = [...carousel.querySelectorAll('[data-slide]')];
     const dots = [...carousel.querySelectorAll('[data-dot]')];
     const current = carousel.querySelector('[data-current]');
+    const previous = carousel.querySelector('[data-prev]');
+    const next = carousel.querySelector('[data-next]');
     const lookId = Number(carousel.dataset.lookId);
     let activeIndex = 0;
-    let pointerStart = null;
-    let scrollStart = 0;
+
+    const updateControls = () => {
+        previous.disabled = activeIndex === 0;
+        next.disabled = activeIndex === slides.length - 1;
+    };
 
     const setActive = (index, source = 'scroll') => {
         const bounded = Math.max(0, Math.min(slides.length - 1, index));
@@ -45,6 +53,7 @@ const setupCarousel = (carousel) => {
         activeIndex = bounded;
         current.textContent = twoDigits(bounded + 1);
         dots.forEach((dot, dotIndex) => dot.toggleAttribute('aria-current', dotIndex === bounded));
+        updateControls();
         if (source !== 'scroll') {
             slides[bounded].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
             track('look_carousel_interaction', { lookId, slideNumber: bounded + 1, interaction: source });
@@ -60,6 +69,7 @@ const setupCarousel = (carousel) => {
             activeIndex = nearest.index;
             current.textContent = twoDigits(activeIndex + 1);
             dots.forEach((dot, index) => dot.toggleAttribute('aria-current', index === activeIndex));
+            updateControls();
             track('look_carousel_interaction', { lookId, slideNumber: activeIndex + 1, interaction: 'swipe' });
         }
     };
@@ -70,8 +80,8 @@ const setupCarousel = (carousel) => {
         scrollTimer = setTimeout(syncFromScroll, 90);
     }, { passive: true });
 
-    carousel.querySelector('[data-prev]').addEventListener('click', () => setActive(activeIndex - 1, 'previous'));
-    carousel.querySelector('[data-next]').addEventListener('click', () => setActive(activeIndex + 1, 'next'));
+    previous.addEventListener('click', () => setActive(activeIndex - 1, 'previous'));
+    next.addEventListener('click', () => setActive(activeIndex + 1, 'next'));
     dots.forEach((dot, index) => dot.addEventListener('click', () => setActive(index, 'dot')));
 
     viewport.addEventListener('keydown', (event) => {
@@ -81,24 +91,116 @@ const setupCarousel = (carousel) => {
         if (event.key === 'End') { event.preventDefault(); setActive(slides.length - 1, 'keyboard'); }
     });
 
-    viewport.addEventListener('pointerdown', (event) => {
-        if (event.pointerType !== 'mouse') return;
-        pointerStart = event.clientX;
-        scrollStart = viewport.scrollLeft;
-        viewport.setPointerCapture(event.pointerId);
-        viewport.classList.add('is-dragging');
+    updateControls();
+};
+
+const setupSelection = () => {
+    const storageKey = `centrocontent:selection:${campaign.clientSlug}:${campaign.campaignSlug}`;
+    const validSizes = new Set(campaign.looks.flatMap((look) => look.availableSizes));
+    const validLookIds = new Set(campaign.looks.map((look) => Number(look.id)));
+    let selectedLooks = [];
+
+    try {
+        const stored = JSON.parse(sessionStorage.getItem(storageKey) || '[]');
+        if (Array.isArray(stored)) {
+            selectedLooks = stored
+                .filter((item) => validLookIds.has(Number(item.lookId)))
+                .map((item) => ({ lookId: Number(item.lookId), size: validSizes.has(item.size) ? item.size : null }));
+        }
+    } catch {
+        sessionStorage.removeItem(storageKey);
+    }
+
+    const selectionFor = (lookId) => selectedLooks.find((item) => item.lookId === Number(lookId));
+
+    const selectionLabel = () => {
+        const count = selectedLooks.length;
+        if (!count) return 'Falar com a loja';
+        return `Solicitar ${count === 1 ? 'preço de 1 look' : `preços de ${count} looks`}`;
+    };
+
+    const save = () => {
+        if (selectedLooks.length) sessionStorage.setItem(storageKey, JSON.stringify(selectedLooks));
+        else sessionStorage.removeItem(storageKey);
+    };
+
+    const render = () => {
+        document.querySelectorAll('[data-look-selection]').forEach((selection) => {
+            const selected = selectionFor(selection.dataset.lookId);
+            const selectButton = selection.querySelector('[data-select-look]');
+            const picker = selection.querySelector('[data-size-picker]');
+            selectButton.setAttribute('aria-pressed', String(Boolean(selected)));
+            selectButton.querySelector('[data-select-label]').textContent = selected ? 'Look selecionado ✓' : 'Quero este look';
+            selectButton.querySelector('i').textContent = selected ? '−' : '＋';
+            picker.hidden = !selected;
+            selection.querySelectorAll('[data-size]').forEach((button) => {
+                button.setAttribute('aria-pressed', String(button.dataset.size === selected?.size));
+            });
+            if (!selected) selection.querySelector('[data-size-error]').textContent = '';
+        });
+
+        document.querySelectorAll('[data-selection-submit]').forEach((button) => {
+            if (button.closest('[data-mobile-selection]')) return;
+            button.firstChild.textContent = `${selectionLabel()} `;
+        });
+
+        const mobileBar = document.querySelector('[data-mobile-selection]');
+        mobileBar.hidden = selectedLooks.length === 0;
+        if (selectedLooks.length) {
+            mobileBar.querySelector('[data-mobile-selection-count]').textContent = `${selectedLooks.length} ${selectedLooks.length === 1 ? 'look selecionado' : 'looks selecionados'}`;
+        }
+    };
+
+    const openWhatsapp = () => {
+        if (!selectedLooks.length) {
+            window.open(`https://wa.me/${campaign.whatsappNumber}?text=${encodeURIComponent(campaign.whatsappMessage)}`, '_blank', 'noopener,noreferrer');
+            track('campaign_whatsapp_click', { selectedLookCount: 0 });
+            return;
+        }
+
+        document.querySelectorAll('[data-size-error]').forEach((element) => { element.textContent = ''; });
+        const incomplete = selectedLooks.find((item) => !item.size);
+        if (incomplete) {
+            const selection = document.querySelector(`[data-look-selection][data-look-id="${incomplete.lookId}"]`);
+            selection.querySelector('[data-size-error]').textContent = 'Escolha um tamanho antes de continuar.';
+            selection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            selection.querySelector('[data-size]')?.focus({ preventScroll: true });
+            track('selection_validation_error', { lookId: incomplete.lookId });
+            return;
+        }
+
+        const message = selectionWhatsappMessage(campaign, selectedLooks);
+        window.open(`https://wa.me/${campaign.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+        track('selection_whatsapp_click', { selectedLookCount: selectedLooks.length, looks: selectedLooks.map(({ lookId, size }) => ({ lookId, size })) });
+    };
+
+    document.querySelectorAll('[data-select-look]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const lookId = Number(button.closest('[data-look-selection]').dataset.lookId);
+            const selected = selectionFor(lookId);
+            selectedLooks = selected
+                ? selectedLooks.filter((item) => item.lookId !== lookId)
+                : [...selectedLooks, { lookId, size: null }];
+            save();
+            render();
+            track(selected ? 'look_selection_removed' : 'look_selection_added', { lookId });
+        });
     });
-    viewport.addEventListener('pointermove', (event) => {
-        if (pointerStart === null) return;
-        viewport.scrollLeft = scrollStart - (event.clientX - pointerStart);
+
+    document.querySelectorAll('[data-size]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const selection = button.closest('[data-look-selection]');
+            const lookId = Number(selection.dataset.lookId);
+            selectedLooks = selectedLooks.map((item) => item.lookId === lookId ? { ...item, size: button.dataset.size } : item);
+            selection.querySelector('[data-size-error]').textContent = '';
+            save();
+            render();
+            track('look_size_selected', { lookId, size: button.dataset.size });
+        });
     });
-    viewport.addEventListener('pointerup', (event) => {
-        if (pointerStart === null) return;
-        viewport.releasePointerCapture(event.pointerId);
-        pointerStart = null;
-        viewport.classList.remove('is-dragging');
-        syncFromScroll();
-    });
+
+    document.querySelectorAll('[data-selection-submit]').forEach((button) => button.addEventListener('click', openWhatsapp));
+    render();
 };
 
 const setupObservers = () => {
@@ -116,11 +218,6 @@ const setupObservers = () => {
     }, { threshold: 0.38 });
     document.querySelectorAll('[data-look-section]').forEach((section) => lookObserver.observe(section));
 
-    const footer = document.querySelector('[data-footer]');
-    const mobileCta = document.querySelector('[data-mobile-cta]');
-    if (footer && mobileCta) {
-        new IntersectionObserver(([entry]) => mobileCta.classList.toggle('is-hidden', entry.isIntersecting), { threshold: 0.1 }).observe(footer);
-    }
 };
 
 const setupActions = () => {
@@ -159,6 +256,7 @@ if (root) {
     root.innerHTML = CampaignLayout(campaign);
     setupImages();
     document.querySelectorAll('[data-carousel]').forEach(setupCarousel);
+    setupSelection();
     setupObservers();
     setupActions();
     track('campaign_view');

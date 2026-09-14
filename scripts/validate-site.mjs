@@ -27,6 +27,7 @@ if (campaign.looks.length !== 10) throw new Error('A campanha precisa ter 10 loo
 campaign.looks.forEach((look) => {
     if (look.images.length !== 10) throw new Error(`Look ${look.id} precisa ter 10 imagens.`);
     if (look.category !== 'fashion') throw new Error(`Look ${look.id}: somente fotografia de moda é permitida.`);
+    if (look.availableSizes?.join(',') !== 'PP,M,G,GG') throw new Error(`Look ${look.id}: tamanhos inválidos.`);
     if (look.textSlide.slide !== 2) throw new Error(`Look ${look.id}: o texto editorial deve estar apenas no slide 2.`);
     if (!look.downloadUrl?.endsWith('.zip') || !look.downloadFileName?.endsWith('.zip')) throw new Error(`Look ${look.id}: download do carrossel não configurado.`);
     look.images.forEach((image) => {
